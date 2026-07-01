@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>青少年网络使用风险评估智能体</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="智能体工作区">
+        <section class="brand">
+          <div class="brand-mark" aria-hidden="true">AI</div>
+          <div>
+            <h1>网络使用评估智能体</h1>
+            <p>青少年网络行为风险分析与干预建议</p>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>快速案例</h2>
+          <div class="case-list">
+            <button class="case-button" data-case="初二学生每天玩手机到凌晨两点，白天上课困，成绩下降，家长收手机会大吵。请帮我评估风险并给出家庭沟通建议。">睡眠受影响</button>
+            <button class="case-button" data-case="学生说自己控制不住刷短视频，一停下来就烦躁，最近不愿意和同学交流。老师应该继续了解哪些信息？">短视频依赖</button>
+            <button class="case-button" data-case="家长担心孩子沉迷游戏，但孩子说游戏是唯一能放松和交朋友的地方。请给出非指责式的沟通方案。">亲子冲突</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>评估维度</h2>
+          <ul class="plain-list">
+            <li>使用时长与失控感</li>
+            <li>睡眠、学习和社交影响</li>
+            <li>情绪变化与家庭冲突</li>
+            <li>保护因素与转介信号</li>
+          </ul>
+        </section>
+
+        <section class="panel note">
+          <h2>安全边界</h2>
+          <p>本工具用于课程演示和辅助分析，不提供医学诊断。若出现自伤、自杀、严重暴力或急性危机，应立即联系监护人、学校和当地专业机构。</p>
+        </section>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">专业智能体 Demo</p>
+            <h2>对话评估</h2>
+          </div>
+          <div class="status-pill" id="modelStatus">等待 API Key</div>
+        </header>
+
+        <section class="chat-window" id="chatWindow" aria-live="polite">
+          <article class="message assistant">
+            <div class="avatar">助</div>
+            <div class="bubble">
+              <p>你好，我可以帮助你梳理青少年网络使用相关的风险、诱因和干预建议。请先在右侧填入阿里云百炼 API Key，然后描述一个具体场景。</p>
+            </div>
+          </article>
+        </section>
+
+        <form class="composer" id="chatForm">
+          <textarea id="userInput" rows="3" placeholder="输入案例或问题，例如：初二学生每天打游戏到凌晨，家长没收手机后激烈争吵。" required></textarea>
+          <div class="composer-actions">
+            <button type="button" id="clearButton" class="secondary-button">清空</button>
+            <button type="submit" class="primary-button">发送评估</button>
+          </div>
+        </form>
+      </section>
+
+      <aside class="report-panel" aria-label="评估摘要">
+        <section class="panel api-panel">
+          <h2>千问 API Key</h2>
+          <label class="field-label" for="apiKeyInput">阿里云百炼 API Key</label>
+          <div class="api-row">
+            <input id="apiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="sk-...">
+            <button type="button" id="toggleKeyButton" class="icon-button eye-button" aria-label="显示 API Key">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <div class="api-actions">
+            <button type="button" id="saveKeyButton" class="secondary-button">保存</button>
+            <button type="button" id="forgetKeyButton" class="secondary-button">清除</button>
+          </div>
+        </section>
+
+        <section class="panel report">
+          <h2>调用状态</h2>
+          <dl>
+            <div>
+              <dt>模型</dt>
+              <dd id="modelName">qwen3.7-plus</dd>
+            </div>
+            <div>
+              <dt>状态</dt>
+              <dd id="apiState">等待 API Key</dd>
+            </div>
+            <div>
+              <dt>当前目标</dt>
+              <dd>识别风险等级、关键诱因与可执行干预路径</dd>
+            </div>
+          </dl>
+        </section>
+
+      </aside>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
